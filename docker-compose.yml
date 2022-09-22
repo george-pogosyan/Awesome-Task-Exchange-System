@@ -1,0 +1,65 @@
+version: '3.8'
+
+networks:
+  app-net:
+    driver: bridge
+
+volumes:
+  postgresql_data:
+    driver: local
+
+services:
+  postgresql:
+    image: docker.io/bitnami/postgresql:14
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgresql_data:/bitnami/postgresql'
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+    networks:
+      - app-net
+
+  zookeeper:
+    image: 'docker.io/bitnami/zookeeper:3.7-debian-11'
+    ports:
+      - 2181:2181
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - app-net
+
+  kafka:
+    image: 'docker.io/bitnami/kafka:3.1-debian-11'
+    ports:
+      - 9092:9092
+      - 9093:9093
+      - 9094:9094
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT,LOCALHOST:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:9093,LOCALHOST://:9094
+      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9092,EXTERNAL://kafka:9093,LOCALHOST://127.0.0.1:9094
+      - KAFKA_INTER_BROKER_LISTENER_NAME=CLIENT
+    depends_on:
+      - zookeeper
+    networks:
+      - app-net
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - 9090:8080
+    depends_on:
+      - zookeeper
+      - kafka
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9093
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+    networks:
+      - app-net
+    logging:
+      driver: none
