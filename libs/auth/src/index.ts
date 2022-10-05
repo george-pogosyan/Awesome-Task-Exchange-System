@@ -1,3 +1,4 @@
 export * from './auth.module'
-export * from './decorators/roles.decorator'
+export * from './decorators'
 export * from './guards/roles.guard'
+export * from './interfaces'

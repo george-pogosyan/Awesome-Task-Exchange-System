@@ -5,6 +5,7 @@ import { JwtModule } from '@nestjs/jwt'
 import { ClientsModule, Transport } from '@nestjs/microservices'
 import { KAFKA_INJECT_SYMBOL } from './constants'
 import { AuthServiceAdapter } from './adapters/auth-service.adapter'
+import { v4 as uuid } from 'uuid'
 
 @Module({
   imports: [
@@ -15,10 +16,10 @@ import { AuthServiceAdapter } from './adapters/auth-service.adapter'
         options: {
           client: {
             brokers: ['localhost:9094'],
-            clientId: 'user-service',
+            clientId: 'user-service-' + uuid(),
           },
           consumer: {
-            groupId: 'user-service-consumer',
+            groupId: 'user-service-consumer-' + uuid(),
             allowAutoTopicCreation: true,
           },
         },
@@ -32,4 +33,4 @@ import { AuthServiceAdapter } from './adapters/auth-service.adapter'
   ],
   providers: [JwtStrategy, AuthServiceAdapter],
 })
-export class AuthModule {}
+export class AuthModule { }
