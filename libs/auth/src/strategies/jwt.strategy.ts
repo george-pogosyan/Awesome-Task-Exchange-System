@@ -26,8 +26,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(jwtPayload: JwtPayload): Promise<IUser> {
     // TODO: send request throw kafka to auth service for validation of jwt token
     const user = await this.authServiceAdapter.validateUser(jwtPayload)
-    console.log(user)
-    this.#logger.log(user)
     if (!user) {
       throw new UnauthorizedException()
     }

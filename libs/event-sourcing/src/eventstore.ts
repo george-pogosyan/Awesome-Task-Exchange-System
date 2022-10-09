@@ -1,5 +1,5 @@
 import { StorableEvent } from './interfaces/storable-event'
-import * as eventstore from 'event-store'
+import * as eventstore from '@lib/event-store'
 import * as url from 'url'
 
 export class EventStore {

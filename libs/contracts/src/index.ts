@@ -5,6 +5,7 @@ export type UserCreatedMessage = {
   payload: {
     id: string,
     email: string,
+    name: string,
     role: 'worker' | 'manager' | 'admin'
   }
 }

@@ -24,7 +24,7 @@ export class RolesGuard extends AuthGuard('jwt') {
   ): any {
     const roles = this.reflector.get<string[]>('roles', context.getHandler())
     if (!roles) {
-      return true
+      return user
     }
     const hasRole = () => roles.includes(user.role)
     if (!user) {
