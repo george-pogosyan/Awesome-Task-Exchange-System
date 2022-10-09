@@ -4,7 +4,7 @@
   "private": true,
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "libs/*"
   ],
   "scripts": {
     "build": "turbo run build",
@@ -13,13 +13,70 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,vue,md}\""
   },
   "devDependencies": {
+    "@nestjs/cli": "^8.0.0",
+    "@nestjs/schematics": "^8.0.0",
+    "@nestjs/testing": "^8.0.0",
+    "@types/express": "^4.17.13",
+    "@types/jest": "27.4.1",
+    "@types/node": "^16.0.0",
+    "@types/supertest": "^2.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.1",
     "eslint-config-custom": "*",
-    "prettier": "latest",
-    "turbo": "latest"
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.2.5",
+    "prettier": "^2.3.2",
+    "source-map-support": "^0.5.20",
+    "supertest": "^6.1.3",
+    "ts-jest": "^27.0.3",
+    "ts-loader": "^9.2.3",
+    "ts-node": "^10.0.0",
+    "tsconfig-paths": "^3.10.1",
+    "turbo": "latest",
+    "typescript": "^4.3.5"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=16.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@lib/auth": "*",
+    "@lib/contracts": "*",
+    "@lib/event-sourcing": "*",
+    "@lib/event-store": "*",
+    "@nestjs/common": "^8.0.0",
+    "@nestjs/core": "^8.0.0",
+    "@nestjs/cqrs": "^9.0.1",
+    "@nestjs/jwt": "^9.0.0",
+    "@nestjs/microservices": "^9.1.1",
+    "@nestjs/mongoose": "^9.2.0",
+    "@nestjs/passport": "^9.0.0",
+    "@nestjs/platform-express": "^8.0.0",
+    "async": "^3.2.4",
+    "aws-sdk": "^2.1227.0",
+    "azure-storage": "^2.10.7",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "cryptr": "^6.0.3",
+    "debug": "^4.3.4",
+    "dotty": "^0.1.2",
+    "elasticsearch": "^16.7.3",
+    "jsondate": "^0.0.1",
+    "kafkajs": "^2.2.0",
+    "lodash": "^4.17.21",
+    "mongodb": "^4.10.0",
+    "mongoose": "^6.6.3",
+    "parent-require": "^1.0.0",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
+    "redis": "^4.3.1",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "^7.2.0",
+    "tingodb": "^0.6.1",
+    "tolerance": "^1.0.0",
+    "uuid": "^9.0.0"
+  },
   "packageManager": "yarn@1.22.15"
 }
