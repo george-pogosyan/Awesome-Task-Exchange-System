@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -8,7 +9,15 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
-  "dependencies": {
+  "devDependencies": {
     "nuxt": "3.0.0-rc.11"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.0.96",
+    "@pinia/nuxt": "^0.4.2",
+    "axios": "^0.27.2",
+    "pinia": "^2.0.22",
+    "sass": "^1.55.0",
+    "vuetify": "^3.0.0-beta.11"
   }
 }
