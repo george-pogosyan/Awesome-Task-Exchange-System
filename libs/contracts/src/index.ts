@@ -9,3 +9,8 @@ export type UserCreatedMessage = {
     role: 'worker' | 'manager' | 'admin'
   }
 }
+
+export type UserDeactivatedMessage = {
+  event: 'UserDeactivated',
+  payload: string
+}
